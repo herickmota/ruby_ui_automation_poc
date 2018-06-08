@@ -10,7 +10,7 @@ Feature: Login
     Then the user is authenticated
 
 
-  @doing
+  @invalid_login
   Scenario Outline: Login with invalid user
     When the user logs with the "<email>" and "<password>"
     Then the user should see the message "<message>"
