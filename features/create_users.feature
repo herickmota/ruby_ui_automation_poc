@@ -6,17 +6,29 @@ Feature: Create Users
     I want to be able to create new users
     So they can report and manage the taxes
 
-    @doing @auth
+    @valid_create_user @auth
     Scenario: Create Admin User
-      Given that I navigate to menu:
+      Given that the user navigate to menu:
           | menu | Admin     |
           | item | All Users |
-      And I click to create users
-      And I select the Account "User_Guide"
-     When I Fill all the required information
-      | first_name | last_name | role          | email                 | password  | region | timezone  |
-      | smoke      | test1     | administrator | smoke_test1@sovos.com | Sovos123! | EU     | Amsterdam |
-     Then I can see the message
-     """
-     User created
-     """
+      And the user click to create users
+      And the user select the account "User_Guide"
+     When the user Fill all the required information
+      | first_name | last_name | role | email                 | password  | region | timezone  |
+      | smoke      | test1     | User | smoke_test1@sovos.com | Sovos123! | EU     | (UTC) Coordinated Universal Time |
+     Then the user can see the message "User created successfully."
+
+     @invalid_create @auth
+     Scenario Outline: Invalid Creation of Users
+        Given that the user is on Create users Page
+        And the user select the account "<account>"
+        When the user Fill all the required information
+          | first_name   | last_name   | role   | email   | password   | region   | timezone   |
+          | <first_name> | <last_name> | <role> | <email> | <password> | <region> | <timezone> |
+        Then the user can see the message "<message>"
+
+        Examples:
+        | account    | first_name | last_name | role | email                 | password  | region | timezone                         | message                              |
+        | User_Guide |            | test1     | User | smoke_test1@sovos.com | Sovos123! | EU     | (UTC) Coordinated Universal Time | The Firstname field is required.     |
+        | User_Guide | smoke      |           | User | smoke_test1@sovos.com | Sovos123! | EU     | (UTC) Coordinated Universal Time | The Lastname field is required.      |
+        | User_Guide | smoke      | test1     | User |                       | Sovos123! | EU     | (UTC) Coordinated Universal Time | The Email Address field is required. |

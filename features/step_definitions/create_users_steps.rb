@@ -1,21 +1,30 @@
-Given("that I navigate to menu:") do |table|
+Given("that the user navigate to menu:") do |table|
   @nav = table.rows_hash
   @home.navigateTo(@nav)
 end
 
-Given("I click to create users") do
+Given("that the user is on Create users Page") do
+  @user.load
+  steps %{
+    Given("the user click to create users") do
+      @user.clickCreateUser
+    end
+  }
+end
+
+Given("the user click to create users") do
   @user.clickCreateUser
 end
 
-Given("I select the Account {string}") do |account|
+Given("the user select the account {string}") do |account|
   @user.selectAccount(account)
 end
 
-When("I Fill all the required information") do |table|
-  # table is a Cucumber::MultilineArgument::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
+When("the user Fill all the required information") do |table|
+  @user_info = table.hashes
+  @user.createUser(@user_info.first)
 end
 
-Then("I can see the message") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+Then("the user can see the message {string}") do |message|
+  expect(@user.alert_message.text).to eql message
 end
