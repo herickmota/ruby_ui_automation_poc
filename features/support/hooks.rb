@@ -1,6 +1,7 @@
 Before do
   @login = LoginPage.new
   @home = HomePage.new
+  @user = Users.new
 end
 
 Before ('@auth') do

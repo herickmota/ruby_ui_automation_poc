@@ -1,18 +1,14 @@
 Given("that I navigate to menu:") do |table|
   @nav = table.rows_hash
-  puts @nav[:menu]
-  @home.searchMenu(@nav[:menu])
-  # @home.searchMenuItem(@nav[:item])
-
-
+  @home.navigateTo(@nav)
 end
 
 Given("I click to create users") do
-  pending # Write code here that turns the phrase above into concrete actions
+  @user.clickCreateUser
 end
 
-Given("I select the Account") do
-  pending # Write code here that turns the phrase above into concrete actions
+Given("I select the Account {string}") do |account|
+  @user.selectAccount(account)
 end
 
 When("I Fill all the required information") do |table|

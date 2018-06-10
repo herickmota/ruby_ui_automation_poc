@@ -12,7 +12,7 @@ Feature: Create Users
           | menu | Admin     |
           | item | All Users |
       And I click to create users
-      And I select the Account
+      And I select the Account "User_Guide"
      When I Fill all the required information
       | first_name | last_name | role          | email                 | password  | region | timezone  |
       | smoke      | test1     | administrator | smoke_test1@sovos.com | Sovos123! | EU     | Amsterdam |
