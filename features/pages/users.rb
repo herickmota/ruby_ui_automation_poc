@@ -15,8 +15,12 @@ class Users < SitePrism::Page
           i = index
           break
        end}
-    find(:xpath, "//tr[#{i+2}]//input").set(true)
-    sleep 3
+    account_checkBox.each_with_index { |line, index|
+      if index == i
+        line.click
+        break
+      end
+    }
   end
 
 end
