@@ -15,7 +15,8 @@ class Users < SitePrism::Page
   element :confirm_password, '#ConfirmPassword'
   element :timezone, '#Timezone'
   element :create_btn, '.btn-create'
-  element :alert_message, :xpath, '(//div[contains(@class, "alert alert")])[2]'
+  element :alert_error_message, 'div#content > div:nth-child(3)'
+  element :alert_success_message, '.alert.alert-success'
 
   def clickCreateUser
     create_user_btn.click
@@ -59,11 +60,5 @@ class Users < SitePrism::Page
   def selectTimezone(zone)
     timezone.first('option', text: zone).select_option
   end
-
-  # def checkMessage(message)
-  #   puts alert_message.text
-  #   expect(alert_message.text).to eql (message)
-  # end
-
 
 end

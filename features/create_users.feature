@@ -6,7 +6,7 @@ Feature: Create Users
     I want to be able to create new users
     So they can report and manage the taxes
 
-    @valid_create_user @auth
+    @valid_user_creation @auth
     Scenario: Create Admin User
       Given that the user navigate to menu:
           | menu | Admin     |
@@ -14,18 +14,18 @@ Feature: Create Users
       And the user click to create users
       And the user select the account "User_Guide"
      When the user Fill all the required information
-      | first_name | last_name | role | email                 | password  | region | timezone  |
-      | smoke      | test1     | User | smoke_test1@sovos.com | Sovos123! | EU     | (UTC) Coordinated Universal Time |
-     Then the user can see the message "User created successfully."
+          | first_name | last_name | role | email                 | password  | region | timezone  |
+          | smoke      | test3     | User | smoke_test3@sovos.com | Sovos123! | EU     | (UTC) Coordinated Universal Time |
+     Then the user can see the message of success "User created successfully."
 
-     @invalid_create @auth
+     @invalid_user_creation @auth
      Scenario Outline: Invalid Creation of Users
         Given that the user is on Create users Page
         And the user select the account "<account>"
         When the user Fill all the required information
           | first_name   | last_name   | role   | email   | password   | region   | timezone   |
           | <first_name> | <last_name> | <role> | <email> | <password> | <region> | <timezone> |
-        Then the user can see the message "<message>"
+        Then the user can see the message of error "<message>"
 
         Examples:
         | account    | first_name | last_name | role | email                 | password  | region | timezone                         | message                              |

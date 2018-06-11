@@ -5,11 +5,6 @@ end
 
 Given("that the user is on Create users Page") do
   @user.load
-  steps %{
-    Given("the user click to create users") do
-      @user.clickCreateUser
-    end
-  }
 end
 
 Given("the user click to create users") do
@@ -25,6 +20,10 @@ When("the user Fill all the required information") do |table|
   @user.createUser(@user_info.first)
 end
 
-Then("the user can see the message {string}") do |message|
-  expect(@user.alert_message.text).to eql message
+Then("the user can see the message of success {string}") do |message|
+  expect(@user.alert_success_message.text).to eql message
+end
+
+Then("the user can see the message of error {string}") do |message|
+  expect(@user.alert_error_message.text).to eql message
 end
