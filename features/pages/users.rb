@@ -1,6 +1,6 @@
 class Users < SitePrism::Page
 
-  set_url "User/Create?isFromAllUsers=True"
+  set_url '/User/Create?isFromAllUsers=True/'
 
   element :create_user_btn, '.btn-create'
   elements :accounts_list, '.trAccounts td + td'

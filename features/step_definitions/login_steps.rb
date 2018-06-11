@@ -1,7 +1,7 @@
 When("the user logs with the {string} and {string}") do |email, password|
   @home_page = HomePage.new
   @login_page = LoginPage.new
-  @login_page.load
+  # @login_page.load
   @login_page.login(email, password)
 
 end
