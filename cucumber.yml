@@ -1,15 +1,10 @@
 ##YAML Template
-default: -p html_report -p json_report
-html_report: --format progress --format html --out=features/results/features_report.html
-parallel: -p parallel_html_report -p parallel_json_report
-parallel_sequencial: -p parallel_sequencial_html_report -p parallel_sequencial_json_report
-rerun: -p rerun_html_report -p rerun_json_report
-
+default: -p html --format progress
+html: --format html --out=results/features_report.html
+json: --format json --out=results/features_report.json
 
 # Environments
 qa: ENVIRONMENT_TYPE=qa
 qa2: ENVIRONMENT_TYPE=qa2
 
-# def cucumber_file
-#   @cucumber_file ||= Dir.glob('{,.config/,config/}cucumber{.yml,.yaml}').first
-# end
+#Aula 5 2:26

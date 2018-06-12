@@ -16,6 +16,10 @@ CONFIG_UI = YAML.load_file(File.dirname(__FILE__) + "/config/#{ENVIRONMENT_TYPE}
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
+Capybara.configure do |config|
+  config.app_host = CONFIG_UI['url']
+end
 
+# Capybara.app_host = CONFIG_UI['url']
 Capybara.default_driver = :selenium
-# Capybara.default_max_wait_time = 70
+Capybara.default_max_wait_time = 10
